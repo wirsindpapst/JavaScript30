@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,6 +21,22 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+
+  :root{
+    --base: #ffc600;
+    --spacing: 10px;
+    --blur: 10px;
+  }
+
+  img {
+    padding: var(--spacing);
+    background: var(--base);
+    filter: var(--blur);
+  }
+
+  .hl {
+    color: var(--base);
+  }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -48,6 +64,17 @@
   </style>
 
   <script>
+    const controls = document.querySelectorAll('.controls input');
+
+    function handleUpdate(){
+      console.log(this.value);
+      const data = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${name}`, this.value + data);
+    }
+
+    controls.forEach(input => input.addEventListener('change', handleUpdate));
+    controls.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
   </script>
 
 </body>
